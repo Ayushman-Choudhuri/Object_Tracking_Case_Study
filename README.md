@@ -1,7 +1,7 @@
 # Object_Tracking_Case_Study
 
 ### Progress Notes: 
-1. The **main** branch contains the updates till 21:00 CET , further updates have been added to the **additions** branch
+This branch contains the updates after 21:00 CET
 
 ### Directory Structure
 ```bash
