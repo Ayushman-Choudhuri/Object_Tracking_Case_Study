@@ -1,8 +1,18 @@
 import cv2 
+import os
+import sys
+import yaml
+
 from src.detection import YOLOv3PotatoDetector
 from src.tracker import PotatoTracker
 
 def main(): 
+    #Initialize paths
+
+    # Add the src directory to the module search path
+    sys.path.append(os.path.abspath('src'))
+    sys.path.append(os.path.abspath('config'))
+
     #Initialize Detector 
     model_config_path = 'config/yolov3_testing.cfg'
     model_weights_path = 'weights/yolov3_training.weights'
@@ -26,7 +36,6 @@ def main():
 
         # Get the detections from the potato detector
         detections = detector.get_detections()
-        print(detections)
 
         # Display the frame with detected objects
         cv2.imshow('Object Detection and Tracking', frame)

@@ -11,7 +11,6 @@ class YOLOv3PotatoDetector():
         self.detections = []
 
     def _frame_to_blob(self, frame): #private
-
         #Convert frame to blob
         blob = cv2.dnn.blobFromImage(frame, 0.00392, (416, 416), (0, 0, 0), True, crop=False)
         return blob
@@ -21,6 +20,9 @@ class YOLOv3PotatoDetector():
 
 
     def detect_potato(self, frame): 
+
+        #Clear detections list
+        self.detections = []
         
         #Convert frame to blob
         blob_input = self._frame_to_blob(frame)
@@ -39,7 +41,8 @@ class YOLOv3PotatoDetector():
 
                 #Filter through a confidence threshold
                 if confidence > 0.5: 
-                    print(detection)
+                    #print(detection)
+                    
                     # Get the bounding box coordinates
                     center_x = int(detection[0] * frame.shape[1])
                     center_y = int(detection[1] * frame.shape[0])
@@ -55,8 +58,10 @@ class YOLOv3PotatoDetector():
                     cv2.putText(frame, str(class_id), (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
                      # Append the bounding box coordinates to detections
-                    #self.detections.append((x, y, width, height))
-        return frame
+                    self.detections.append((x, y, width, height))
+        print(self.detections)
+        print(".............................")       
+        return frame 
     
     def get_detections(self):
         
