@@ -1,9 +1,6 @@
 from deep_sort_realtime.deepsort_tracker import DeepSort
 import cv2
-import sys
-import os
 import numpy as np
-import yaml
 import torch
 
 DISP_OBJ_TRACK_BOX = False

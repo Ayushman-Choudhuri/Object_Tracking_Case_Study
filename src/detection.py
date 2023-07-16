@@ -1,5 +1,4 @@
 import cv2
-import numpy as np
 
 class YOLOv3PotatoDetector(): 
     def __init__(self, model_config_path, model_weights_path):
