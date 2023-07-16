@@ -1,7 +1,7 @@
 # Object_Tracking_Case_Study
 
 ### Progress Notes: 
-1. The **main** branch contains the updates till 21:00 CET , further updates have been added to the **additions** branch
+This branch contains the updates after 21:00 CET
 
 ### Directory Structure
 ```bash
@@ -48,4 +48,5 @@ python3 main.py
 ### Known Issues: 
 1. Currently there are sometimes redundant bounding boxes being detected. The NMS function needs to be tuned in order to avoid redundant bounding boxes
 2. When the potato goes under the gripper mechanism in the video, the tracking seems to be lost. The deepSORT tracker parameters need to be tuned for this (most probably the parameters related to Kalman filtering).
+3. There are few hard coded figures in the tracker and detector classes, these will be imported from a config.yml file later.
 
