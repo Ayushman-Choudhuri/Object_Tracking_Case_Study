@@ -6,7 +6,7 @@ import numpy as np
 import yaml
 import torch
 
-DISP_OBJ_TRACK_BOX = True
+DISP_OBJ_TRACK_BOX = False
 DISP_TRACKS = True
 
 class DeepSortTracker(): 
