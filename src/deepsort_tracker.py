@@ -4,6 +4,7 @@ import sys
 import os
 import numpy as np
 import yaml
+import torch
 
 DISP_OBJ_TRACK_BOX = True
 DISP_TRACKS = True

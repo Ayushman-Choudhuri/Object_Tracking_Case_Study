@@ -55,12 +55,12 @@ class YOLOv3PotatoDetector():
 
                     # Draw the bounding box and label on the frame
                     cv2.rectangle(frame, (x, y), (x + width, y + height), (0, 255, 0), 2)
-                    cv2.putText(frame, str(class_id), (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+                    cv2.putText(frame, str("potato"), (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
                      # Append the bounding box coordinates to detections
-                    self.detections.append((x, y, width, height))
-        print(self.detections)
-        print(".............................")       
+                    self.detections.append(([x, y, width, height], confidence, "potato")) 
+        #print(self.detections)
+        #print(".............................")       
         return frame 
     
     def get_detections(self):
