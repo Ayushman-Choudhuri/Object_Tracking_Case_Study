@@ -49,4 +49,5 @@ python3 main.py
 1. Currently there are sometimes redundant bounding boxes being detected. The NMS function needs to be tuned in order to avoid redundant bounding boxes
 2. When the potato goes under the gripper mechanism in the video, the tracking seems to be lost. The deepSORT tracker parameters need to be tuned for this (most probably the parameters related to Kalman filtering).
 3. There are few hard coded figures in the tracker and detector classes, these will be imported from a config.yml file later.
+4. Currently the computations are being conducted on a CPU and hence the program seems to be very slow. This should be sped up when executed on a GPU
 
