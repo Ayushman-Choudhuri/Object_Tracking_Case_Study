@@ -8,10 +8,13 @@ class PotatoTracker:
         self.tracker = cv2.TrackerKCF_create()
         self.tracked_objects = []
 
-    def start_tracker(self, frame, detections): 
-        for detection in detections:
-            x, y, w, h = detection
-            self.tracker.add(frame, (x, y, w, h))
+    def start_tracker(self, frame, detections):
+        if frame is not None and frame.size != 0 and len(detections) > 0:
+            for detection in detections:
+                x, y, w, h = detection
+                if x >= 0 and y >= 0 and w > 0 and h > 0 and x + w <= frame.shape[1] and y + h <= frame.shape[0]:
+                    self.tracker.init(frame, (x, y, w, h))
+
 
     def update_tracker(self, frame): 
         success, boxes = self.tracker.update(frame)

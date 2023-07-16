@@ -26,18 +26,8 @@ def main():
 
         # Get the detections from the potato detector
         detections = detector.get_detections()
+        print(detections)
 
-        if len(detections) > 0:
-            print("Potatoes Detected")
-            if tracker.tracker.empty():
-                tracker.start_tracker(frame, detections)
-            else:
-                tracked_objects = tracker.update_tracker(frame)
-        else: 
-            print("No Potatoes Detected")
-        # Draw the track lines on the frame
-        tracker.draw_track_lines(frame)
-   
         # Display the frame with detected objects
         cv2.imshow('Object Detection and Tracking', frame)
 

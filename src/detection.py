@@ -39,7 +39,7 @@ class YOLOv3PotatoDetector():
 
                 #Filter through a confidence threshold
                 if confidence > 0.5: 
-
+                    print(detection)
                     # Get the bounding box coordinates
                     center_x = int(detection[0] * frame.shape[1])
                     center_y = int(detection[1] * frame.shape[0])
@@ -54,6 +54,8 @@ class YOLOv3PotatoDetector():
                     cv2.rectangle(frame, (x, y), (x + width, y + height), (0, 255, 0), 2)
                     cv2.putText(frame, str(class_id), (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
+                     # Append the bounding box coordinates to detections
+                    #self.detections.append((x, y, width, height))
         return frame
     
     def get_detections(self):
