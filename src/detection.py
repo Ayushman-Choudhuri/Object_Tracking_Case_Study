@@ -1,21 +1,23 @@
 import cv2
 import numpy as np
-import yaml 
+#import yaml 
 
-class YOLOv3Detector(): 
+class YOLOv3PotatoDetector(): 
     def __init__(self, model_config_path, model_weights_path):
         # Load YOLOv3 Model from cv2.dnn
         self.net = cv2.dnn.readNetFromDarknet(model_config_path, model_weights_path)
         self.layer_names = self.net.getLayerNames()
         self.output_layers = outputlayers = [self.layer_names[i-1] for i in self.net.getUnconnectedOutLayers()]
+        self.detections = []
 
-
-    
     def _frame_to_blob(self, frame): #private
 
         #Convert frame to blob
         blob = cv2.dnn.blobFromImage(frame, 0.00392, (416, 416), (0, 0, 0), True, crop=False)
         return blob
+    
+    def _apply_bbox_nms(): 
+        pass #to be imlpemented
 
 
     def detect_potato(self, frame): 
@@ -53,6 +55,10 @@ class YOLOv3Detector():
                     cv2.putText(frame, str(class_id), (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
         return frame
+    
+    def get_detections(self):
+        
+        return self.detections
 
 
 if __name__ == "__main__":
