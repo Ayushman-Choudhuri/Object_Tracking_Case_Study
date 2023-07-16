@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-#import yaml 
 
 class YOLOv3PotatoDetector(): 
     def __init__(self, model_config_path, model_weights_path):
@@ -12,12 +11,20 @@ class YOLOv3PotatoDetector():
 
     def _frame_to_blob(self, frame): #private
         #Convert frame to blob
-        blob = cv2.dnn.blobFromImage(frame, 0.00392, (416, 416), (0, 0, 0), True, crop=False)
+        blob = cv2.dnn.blobFromImage(frame, 1/255, (416, 416), (0, 0, 0), True, crop=False)
         return blob
     
-    def _apply_bbox_nms(): 
-        pass #to be imlpemented
+    def _apply_bbox_nms(self): #private
+        
+        # Extract the bounding box coordinates and confidence scores from the detections
+        bboxes = [bbox for bbox, _, _ in self.detections]
+        confidences = [confidence for _, confidence, _ in self.detections]
 
+        # Apply Non-Maximum Suppression to remove overlapping bounding boxes
+        indices = cv2.dnn.NMSBoxes(bboxes, confidences, score_threshold=0.5, nms_threshold=0.1)
+
+        # Update the detections with the filtered bounding boxes
+        self.detections = [self.detections[i] for i in indices]
 
     def detect_potato(self, frame): 
 
@@ -64,9 +71,8 @@ class YOLOv3PotatoDetector():
         return frame 
     
     def get_detections(self):
-        
+        self._apply_bbox_nms()
         return self.detections
-
 
 if __name__ == "__main__":
     
