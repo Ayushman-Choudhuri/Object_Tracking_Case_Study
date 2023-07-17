@@ -5,7 +5,7 @@ class YOLOv3PotatoDetector():
         # Load YOLOv3 Model from cv2.dnn
         self.net = cv2.dnn.readNetFromDarknet(model_config_path, model_weights_path)
         self.layer_names = self.net.getLayerNames()
-        self.output_layers = outputlayers = [self.layer_names[i-1] for i in self.net.getUnconnectedOutLayers()]
+        self.output_layers = [self.layer_names[i-1] for i in self.net.getUnconnectedOutLayers()]
         self.detections = []
 
     def _frame_to_blob(self, frame): #private
@@ -46,7 +46,7 @@ class YOLOv3PotatoDetector():
                 confidence = scores[class_id]
 
                 #Filter through a confidence threshold
-                if confidence > 0.5: 
+                if confidence > 0.5: # Seems redundant with the NMS function --> can be removed
                     #print(detection)
                     
                     # Get the bounding box coordinates

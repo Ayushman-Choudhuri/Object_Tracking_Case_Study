@@ -1,7 +1,6 @@
 import cv2 
 import os
 import sys
-import yaml
 
 from src.detection import YOLOv3PotatoDetector
 from src.deepsort_tracker import DeepSortTracker
